@@ -4,7 +4,7 @@ on_error = <<EOM
 Expected expression as a string argument:
 Use the format: ruby Calc.rb "<your_expression>"
 You can perform only these actions "+", "-", "*", "/"
-Braces are supported as \"(\", \")\"
+Braces are supported as ( )
 Do not use space!
 EOM
 
