@@ -19,7 +19,7 @@ class Calc
 
 		def parse_Formula(expr)
 
-			expr = unfreeze_String(expr)
+			expr = expr.dup
 			result = parse_Secondary(expr)
 
 			while (expr.size > 0)
@@ -39,19 +39,6 @@ class Calc
 
 
 	private
-
-		def unfreeze_String(expr)
-
-			editable = ""
-			exp = expr.split(//)
-
-			for char in exp
-				editable += char
-			end
-
-			return editable
-			
-		end
 
 		def parse_Secondary(expr)
 
@@ -132,27 +119,10 @@ class Calc
 
     	def parse_Num(expr)
 
-			num = 0
-			numLen = expr.size
-			toknum = ""
-			i = 0
-			
-			while i < numLen
-					
-				if (!(expr[0] =~ /[[:digit:]]/))
-
-					return num	
-				end
-					
-				toknum += expr[0]
-				num = toknum.to_i	
-				expr.slice!(0)
-				i += 1
-					
-			end
-			
-			return num
-
+			num = expr.index(/\D/)
+   			num = 0 if num.nil?
+    		expr.slice!(0..num-1).to_i
+    		
 		end
 
 end
